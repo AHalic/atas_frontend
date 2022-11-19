@@ -11,10 +11,15 @@ export default function Home() {
 			<Header></Header>
 
 			<div className="container-atas">
+				<div className="aux"></div>
 				<div className="container-texts">
-					<text id="atas-text-1">Atas de Reunião</text>
-					<text id="atas-text-2">Estas são as atas das últimas reuniões</text>
+					<p id="atas-text-1">Atas de Reunião</p>
+					<p id="atas-text-2">Estas são as atas das últimas reuniões</p>
 				</div>
+				<button className="new-ata-button" type="button">
+                    + NOVA ATA
+                </button>
+				<div className="aux"></div>
 			</div>
 
 			<div className="Content"> 

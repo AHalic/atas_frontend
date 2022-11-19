@@ -6,16 +6,58 @@
     vertical-align: middle;
 }
 
+.aux {
+    max-width: 300px;
+    min-width: 20px;
+}
+
 .container-atas {
     display: flex;
     width: auto;
-    padding: 2%;
-    align-items: center;
-    flex-direction: column;
+    padding: 25px 10px;
+    justify-content: space-between;
+    flex-direction: row;
 }
 
 .container-texts {
+    margin-right: 10%;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+}
+
+.container-texts #atas-text-1 {
+    margin: 0;
+    padding: 0;
+    color: #1E2251;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.container-texts #atas-text-2 {
+    margin: 0;
+    padding: 0;
+    color: #5C5958;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.new-ata-button {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #312F2F;
+    text-align: center;
+
+    width: 100px;
+    padding: 8px 14px;
+    border-radius: 5px;
+    background-color: #4FC3F7;
+    border: none;
+}
+
+.new-ata-button:hover {
+    background-color: #6CCCF8;
 }
