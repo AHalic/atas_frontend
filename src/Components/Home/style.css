@@ -20,6 +20,10 @@ p {
     letter-spacing: 0.01em;
 }
 
+hr {
+    border: 0.5px solid #C0C1C6;
+}
+
 .aux {
     max-width: 300px;
     min-width: 10px;
@@ -62,11 +66,16 @@ p {
     text-align: center;
     cursor: pointer;
 
-    width: 110px;
+    height: 70%;
+    margin-top: 9px;
     padding: 8px 14px;
     border-radius: 5px;
     background-color: #4FC3F7;
     border: none;
+}
+
+.button-link-new {
+    width: 110;
 }
 
 .new-ata-button:hover {
@@ -97,7 +106,7 @@ p {
     margin-bottom: 10vh;
 }
 
-.ata-container {
+.inner-ata-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
