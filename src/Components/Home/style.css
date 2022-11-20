@@ -27,6 +27,7 @@ p {
 .container-atas {
     display: flex;
     width: auto;
+    padding: 0;
     /* padding: auto 10px 5px; */
     justify-content: space-between;
     flex-direction: row;
@@ -78,7 +79,6 @@ p {
     min-width: 500px;
     justify-content: space-between;
     flex-direction: row;
-    padding: 5vh;
 }
 
 .container-saved-atas {
