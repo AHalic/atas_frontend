@@ -91,11 +91,14 @@ export default function Home() {
 						<p id="atas-text-1">Atas de Reunião</p>
 						<p id="atas-text-2">Estas são as atas das últimas reuniões</p>
 					</div>
-					<Link to="/nova-ata">
-						<button className="new-ata-button" type="button">
-							+ NOVA ATA
-						</button>
-					</Link>
+
+					<div className="button-link-new">
+						<Link to="/nova-ata">
+							<button className="new-ata-button bg-custom-light-blue" type="button">
+								+ NOVA ATA
+							</button>
+						</Link>
+					</div>
 				</div>
 				<div className="aux"></div>
 			</div>
@@ -109,19 +112,23 @@ export default function Home() {
 						// only show type if there are atas of that type
 						return	<div className="title-sec-atas" key={tiposReuniao.find(i => i.nome === item).id}>
 									<p className="title-sec">{item}</p>
-									{atas.filter((ata) => ata.tipoReuniao === item).map(ata => (
-										<div className="ata-container" key={`${ata.id}`}>
-											<div className="ata" key={`${ata.id}`}>
-												<p className="title-ata">{ata.titulo}</p>
-												<p className="info-ata">{new Date(ata.dataInicio).toLocaleString('pt-BR')}, na {ata.local}</p>
-											</div>
+									{atas.filter((ata) => ata.tipoReuniao === item).map((ata, index) => (
+										<div className="outer-ata-container" key={ata.id}>
+											<div className="inner-ata-container" key={`${ata.id}`}>
+												<div className="ata" key={`${ata.id}`}>
+													<p className="title-ata">{ata.titulo}</p>
+													<p className="info-ata">{new Date(ata.dataInicio).toLocaleString('pt-BR')}, na {ata.local}</p>
+												</div>
 
-											<div className="ata-buttons">
-												<AiOutlineEye/>
-												<button className="handle-ata-button" type="button" onClick={() => deleteAta(ata.id)}>
-													<BiTrashAlt size={16}/>
-												</button>
+												<div className="ata-buttons">
+													<AiOutlineEye/>
+													<button className="handle-ata-button" type="button" onClick={() => deleteAta(ata.id)}>
+														<BiTrashAlt size={16}/>
+													</button>
+												</div>
+
 											</div>
+											{index !== atas.filter((ata) => ata.tipoReuniao === item).length - 1 ? <hr/> : null}
 										</div>
 									))}
 								</div>;
