@@ -40,9 +40,23 @@ export default function Form() {
 			<div className="container-atas"> 
 				<div className="aux"></div>
 
-				<div className="container-saved-atas">
+				<form>
+					<div className="container-saved-atas">
+						<p className="label-forms">
+							Identificação
+						</p>
+						<div className="container-inputs">
+							<div className="field">
+								<input type="text" required/>
+								<label>Título</label>
+							</div>
+						</div>
 
-				</div>
+						<p className="label-forms">
+							Conteúdo da Reunião
+						</p>
+					</div>
+				</form>
 
 				<div className="aux"></div>
 			</div>
