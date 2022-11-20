@@ -76,7 +76,7 @@ p {
     display: flex;
     width: 65vw;
     max-width: 820px;
-    min-width: 500px;
+    min-width: 480px;
     justify-content: space-between;
     flex-direction: row;
 }
@@ -89,7 +89,7 @@ p {
     width: 65vw;
     height: 80%;
     max-width: 820px;
-    min-width: 500px;
+    min-width: 480px;
     justify-content: flex-start;
     align-items: flex-start;
 
