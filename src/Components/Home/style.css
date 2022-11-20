@@ -1,0 +1,154 @@
+html, body, #root, #root>div {
+    background-color: #E4E6F0;
+    height: 100%;
+    margin: 0;
+}
+
+.Home {
+	display: inline-block;
+    background-color: #E4E6F0;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.01em;
+}
+
+.aux {
+    max-width: 300px;
+    min-width: 10px;
+}
+
+.container-atas {
+    display: flex;
+    width: auto;
+    /* padding: auto 10px 5px; */
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.container-texts {
+    margin-right: 10%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.container-texts #atas-text-1 {
+    color: #1E2251;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.container-texts #atas-text-2 {
+    margin: 0;
+    padding: 0;
+    color: #5C5958;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.new-ata-button {
+    font-size: 12px;
+    font-weight: 700;
+    color: #312F2F;
+    text-align: center;
+    cursor: pointer;
+
+    width: 110px;
+    padding: 8px 14px;
+    border-radius: 5px;
+    background-color: #4FC3F7;
+    border: none;
+}
+
+.new-ata-button:hover {
+    background-color: #6CCCF8;
+}
+
+.container-atas-content {
+    display: flex;
+    width: 65vw;
+    max-width: 820px;
+    min-width: 500px;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 5vh;
+}
+
+.container-saved-atas {
+    background-color: #F5F5F5;
+    margin-top: 5vh;
+    padding: 5vh;
+    border-radius: 5px;
+    width: 65vw;
+    height: 80%;
+    max-width: 820px;
+    min-width: 500px;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    margin-bottom: 10vh;
+}
+
+.ata-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.ata {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.ata-buttons {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50px;
+}
+
+.title-ata {
+    color: #312F2F;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.info-ata {
+    font-size: 12px;
+    color: #5C5958;
+    font-weight: 400;
+}
+
+.title {
+    color: #312F2F;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.title-sec {
+    color: #1E2251;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.handle-ata-button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
