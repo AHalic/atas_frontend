@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "../AppHeader/AppHeader";
-
+import {AiOutlineCalendar} from 'react-icons/ai';
 import api from "../../services/api";
 import '../Home/style.css';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 
 export default function Form() {
@@ -11,6 +12,11 @@ export default function Form() {
 	const [tiposReuniao, setTiposReuniao] = useState([{}]);
 	const [dateStart, setDateStart] = useState(new Date());
 	const [dateEnd, setDateEnd] = useState(new Date());
+	const [selectedLocal, setSelectedLocal] = useState(0);
+	const [selectedTipoReuniao, setSelectedTipoReuniao] = useState(0);
+	const [selectedTitle, setSelectedTitle] = useState('');
+
+	const aux_tipo = tiposReuniao ? tiposReuniao.filter((tipo) => Number(tipo.id) === Number(selectedTipoReuniao))[0] : undefined;
 
 	// Get Locais from API
 	useEffect(() => {
@@ -44,6 +50,19 @@ export default function Form() {
 		setDateEnd(e.target.value);
 	}
 
+	function handleLocalChange(e) {
+		setSelectedLocal(e.target.value);
+	}
+
+	function handleTipoReuniaoChange(e) {
+		setSelectedTipoReuniao(e.target.value);
+	}
+
+	function handleTitleChange(e) {
+		setSelectedTitle(e.target.value);
+	}
+
+
 	return (
 		<div className="Form">
 			<Header />
@@ -73,13 +92,13 @@ export default function Form() {
 						<div className="container-inputs">
 							{/* Titulo da reunião input */}
 							<div className="relative">
-								<input required type="text" id="floating_outlined_title" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" " />
+								<input required type="text" onChange={handleTitleChange} id="floating_outlined_title" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" " />
 								<label htmlFor="floating_outlined_title" className="font-sans absolute text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Título *</label>
 							</div>
 							
 							{/* Local Picker */}
 							<div className="relative">
-								<select defaultValue={"default"} required id="floating_outlined_local" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" ">
+								<select onChange={handleLocalChange} defaultValue={"default"} required id="floating_outlined_local" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" ">
 									<option value="default" hidden disabled>Escolha um local</option>
 									{local.map((local) => (
 										<option key={`${local.id}`} value={local.id}>{local.nome}</option>
@@ -90,20 +109,26 @@ export default function Form() {
 							
 							{/* Data e Hora Picker */}
 							<div className="calendars-input">
-								<div className="date-test">
-									<input required onChange={handleDateStartChange} type="datetime-local" id="floating_outlined_start" className="flex text-sm w-4/5 text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" value="" />
-									<label htmlFor="floating_outlined_start" className="font-sans absolute text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">Data e Horário de Início *</label>
+								<div className="date-test calendar relative ">
+									<div className="date-test relative">
+										<input required onChange={handleDateStartChange} name="floating_outlined_start" type="datetime-local" id="floating_outlined_start" className="flex text-sm w-4/5 text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" value={dateStart}/>
+										<label htmlFor="floating_outlined_start" className="font-sans absolute text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">Data e Horário de Início *</label>
+									</div>
+									<AiOutlineCalendar className="absolute left-2/3 text-custom-dark-gray translate-y-3"/>
 								</div>
-
-								<div className="date-test relative">
-									<input onChange={handleDateEndChange} type="datetime-local" id="floating_outlined_end" className="absolute right-1 text-sm w-4/5 text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" value="" />
-									<label htmlFor="floating_outlined_end" className="font-sans absolute right-1 left-1/4 text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">Data e Horário de Fim</label>
+								
+								<div className="date-test calendar relative">
+									<div className="date-test relative">
+										<input onChange={handleDateEndChange} name="floating_outlined_end" type="datetime-local" id="floating_outlined_end" className="color-before absolute right-1 text-sm w-4/5 text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" value={dateEnd}/>
+										<label htmlFor="floating_outlined_end" className="left-size font-sans absolute right-1 text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">Data e Horário de Fim</label>
+										<AiOutlineCalendar className="absolute right-6 text-custom-dark-gray translate-y-3"/>
+									</div>
 								</div>
 							</div>
 							
 							{/* Tipo de reunião Picker */}
 							<div className="relative">
-								<select defaultValue={"default"} required id="floating_outlined_tipos" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" ">
+								<select defaultValue={"default"} onChange={handleTipoReuniaoChange} required id="floating_outlined_tipos" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" ">
 									<option value="default" hidden disabled>Escolha um tipo de reunião</option>
 									{tiposReuniao.map((tipos) => (
 										<option key={`${tipos.id}`} value={tipos.id}>{tipos.nome}</option>
@@ -111,13 +136,31 @@ export default function Form() {
 								</select>
 								<label htmlFor="floating_outlined_tipos" className="font-sans absolute text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Tipo de Reunião *</label>
 							</div>
-
-
 						</div>
 
 						<p className="label-forms">
 							Conteúdo da Reunião
 						</p>
+
+						<div className="meeting-content">
+							{aux_tipo ? aux_tipo['campos'].map((campo) => (
+								<div key={`${campo.id}`} className="relative">
+									<input required type={`${campo.tipo}`} id={`campo-${campo.id}`} className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" " />
+									<label htmlFor={`campo-${campo.id}`} className="font-sans absolute text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">{campo.nome}</label>
+								</div>
+							)) : null}
+						</div>
+
+						<div className="buttons-forms">
+							<Link to="/">
+								<button type="button" className="buttons button-cancel">
+									CANCELAR
+								</button>
+							</Link>
+							<button type="submit" className="buttons button-save">
+								SALVAR ATA
+							</button>
+						</div>
 					</div>
 				</form>
 
