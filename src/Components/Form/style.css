@@ -21,3 +21,25 @@
 .relative {
     margin-bottom: 20px;
 }
+
+.date-test {
+    display: flex;
+    position: relative;
+    margin: 0;
+    width: 50%;
+}
+
+.calendars-input {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+#floating_outlined_end::before {
+    color: #7B7B7B;
+}
+
+#floating_outlined_end::after {
+    color: #E4E6F0;
+}
