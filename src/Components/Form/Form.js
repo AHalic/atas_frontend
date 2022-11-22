@@ -164,8 +164,8 @@ export default function Form() {
 								} else if (campo.tipo === 'textarea') {
 									return (
 										<div key={`${campo.id}`} className="relative">
-											<textarea required type={`${campo.tipo}`} id={`campo-${campo.id}`} className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" "></textarea>
-											<label htmlFor={`campo-${campo.id}`} className="font-sans absolute text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">{campo.nome}</label>
+											<label htmlFor={`campo-${campo.id}`} className="font-sans pl-2 text-sm text-custom-dark-gray">{campo.nome}</label>
+											<textarea required type={`${campo.tipo}`} id={`campo-${campo.id}`} className="block px-2.5 pb-2.5 pt-4 h-28 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" "></textarea>
 										</div>
 									)
 								} else {
