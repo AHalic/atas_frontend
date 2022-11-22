@@ -110,28 +110,33 @@ export default function Home() {
 				<div className="container-saved-atas">
 					{unique && unique.length > 0 && tiposReuniao && atas ? unique.map((item) => {
 						// only show type if there are atas of that type
-						return	<div className="title-sec-atas" key={tiposReuniao.find(i => i.nome === item).id}>
-									<p className="title-sec">{item}</p>
-									{atas.filter((ata) => ata.tipoReuniao === item).map((ata, index) => (
-										<div className="outer-ata-container" key={ata.id}>
-											<div className="inner-ata-container" key={`${ata.id}`}>
-												<div className="ata" key={`${ata.id}`}>
-													<p className="title-ata">{ata.titulo}</p>
-													<p className="info-ata">{new Date(ata.dataInicio).toLocaleString('pt-BR')}, na {ata.local}</p>
-												</div>
+						const find_aux = tiposReuniao.find(i => i.nome === item)
+						if (find_aux) {
+							return	<div className="title-sec-atas" key={find_aux.id}>
+										<p className="title-sec">{item}</p>
+										{atas.filter((ata) => ata.tipoReuniao === item).map((ata, index) => (
+											<div className="outer-ata-container" key={ata.id}>
+												<div className="inner-ata-container" key={`${ata.id}`}>
+													<div className="ata" key={`${ata.id}`}>
+														<p className="title-ata">{ata.titulo}</p>
+														<p className="info-ata">{new Date(ata.dataInicio).toLocaleString('pt-BR')}, na {ata.local}</p>
+													</div>
 
-												<div className="ata-buttons">
-													<AiOutlineEye/>
-													<button className="handle-ata-button" type="button" onClick={() => deleteAta(ata.id)}>
-														<BiTrashAlt size={16}/>
-													</button>
-												</div>
+													<div className="ata-buttons">
+														<AiOutlineEye/>
+														<button className="handle-ata-button" type="button" onClick={() => deleteAta(ata.id)}>
+															<BiTrashAlt size={16}/>
+														</button>
+													</div>
 
+												</div>
+												{index !== atas.filter((ata) => ata.tipoReuniao === item).length - 1 ? <hr/> : null}
 											</div>
-											{index !== atas.filter((ata) => ata.tipoReuniao === item).length - 1 ? <hr/> : null}
-										</div>
-									))}
-								</div>;
+										))}
+									</div>;
+						} else {
+							return null
+						}
 					}) :  
 						// if there are no atas saved
 						<div className="title-sec-atas" key={0}>
