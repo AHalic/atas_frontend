@@ -4,20 +4,23 @@ import {AiOutlineCalendar} from 'react-icons/ai';
 import api from "../../services/api";
 import '../Home/style.css';
 import './style.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function Form() {
 	const [local, setLocal] = useState([{}]);
 	const [tiposReuniao, setTiposReuniao] = useState([{}]);
 	const [dateStart, setDateStart] = useState(new Date());
-	const [dateEnd, setDateEnd] = useState(new Date());
+	const [dateEnd, setDateEnd] = useState(undefined);
 	const [selectedLocal, setSelectedLocal] = useState(0);
 	const [selectedTipoReuniao, setSelectedTipoReuniao] = useState(0);
 	const [selectedTitle, setSelectedTitle] = useState('');
 	const [selectedDescription, setSelectedDescription] = useState([]);
 
+	// aux variable to store the selected type
 	const aux_tipo = tiposReuniao ? tiposReuniao.filter((tipo) => Number(tipo.id) === Number(selectedTipoReuniao))[0] : undefined;
+	const navigate = useNavigate();
+
 
 	// Get Locais from API
 	useEffect(() => {
@@ -52,13 +55,15 @@ export default function Form() {
 	}
 
 	function handleLocalChange(e) {
+		console.log(e.target.value);
 		setSelectedLocal(e.target.value);
 	}
 
 	function handleTipoReuniaoChange(e) {
+		console.log(e.target.value);
 		setSelectedTipoReuniao(e.target.value);
 		const type = tiposReuniao.filter((tipo) => Number(tipo.id) === Number(e.target.value))[0];
-		setSelectedDescription(type['campos'].map((item) => {return {"id":item.id, "descricao":""}}));
+		setSelectedDescription(type['campos'].map((item) => {return {"campoId":item.id, "valor":""}}));
 	}
 
 	function handleTitleChange(e) {
@@ -66,8 +71,36 @@ export default function Form() {
 	}
 
 	function handleDescriptionChange(e) {
-		const aux = selectedDescription.map(item => item.id == e.target.id ? {...item, descricao: e.target.value} : item);	
+		const aux = selectedDescription.map(item => item.campoId == e.target.id ? {...item, valor: e.target.value} : item);	
 		setSelectedDescription(aux);
+	}
+
+	async function handleSubmit(event) {
+        // previne o comportamento padrão do formulario (recarregar a pagina)
+        event.preventDefault();
+
+        const titulo = selectedTitle;
+        const localId = selectedLocal;
+        const dataInicio = dateStart;
+        const dataFim = dateEnd;
+        const tipoReuniaoId = selectedTipoReuniao;
+        const camposAtaReuniao = selectedDescription;
+        
+        const data = {
+			'titulo': titulo,
+			'localId': localId,
+			'dataInicio': dataInicio,
+			'dataFim': dataFim,
+			'tipoReuniaoId': tipoReuniaoId,
+			'camposAtaReuniao': camposAtaReuniao,
+		}
+
+		console.log(data);
+        await api.post('/api/Atas', data);
+
+        alert('Ata criada!');
+
+        navigate('/');
 	}
 
 	return (
@@ -90,7 +123,7 @@ export default function Form() {
 			<div className="container-atas"> 
 				<div className="aux"></div>
 
-				<form>
+				<form onSubmit={handleSubmit}>
 					<div className="container-saved-atas">
 						<p className="label-forms">
 							Identificação
@@ -105,8 +138,8 @@ export default function Form() {
 							
 							{/* Local Picker */}
 							<div className="relative">
-								<select onChange={handleLocalChange} defaultValue={"default"} required id="floating_outlined_local" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" ">
-									<option value="default" hidden disabled>Escolha um local</option>
+								<select onChange={handleLocalChange} required id="floating_outlined_local" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" ">
+									<option value="" hidden disabled>Escolha um local</option>
 									{local.map((local) => (
 										<option key={`${local.id}`} value={local.id}>{local.nome}</option>
 									))}
@@ -135,8 +168,8 @@ export default function Form() {
 							
 							{/* Tipo de reunião Picker */}
 							<div className="relative">
-								<select defaultValue={"default"} onChange={handleTipoReuniaoChange} required id="floating_outlined_tipos" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" ">
-									<option value="default" hidden disabled>Escolha um tipo de reunião</option>
+								<select onChange={handleTipoReuniaoChange} required id="floating_outlined_tipos" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" placeholder=" ">
+									<option value="" hidden disabled>Escolha um tipo de reunião</option>
 									{tiposReuniao.map((tipos) => (
 										<option key={`${tipos.id}`} value={tipos.id}>{tipos.nome}</option>
 									))}
