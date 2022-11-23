@@ -55,12 +55,10 @@ export default function Form() {
 	}
 
 	function handleLocalChange(e) {
-		console.log(e.target.value);
 		setSelectedLocal(e.target.value);
 	}
 
 	function handleTipoReuniaoChange(e) {
-		console.log(e.target.value);
 		setSelectedTipoReuniao(e.target.value);
 		const type = tiposReuniao.filter((tipo) => Number(tipo.id) === Number(e.target.value))[0];
 		setSelectedDescription(type['campos'].map((item) => {return {"campoId":item.id, "valor":""}}));
@@ -95,8 +93,11 @@ export default function Form() {
 			'camposAtaReuniao': camposAtaReuniao,
 		}
 
-		console.log(data);
-        await api.post('/api/Atas', data);
+        await api
+				.post('/api/Atas', data)
+				.catch((err) => {
+					console.error("ops! ocorreu um erro ao fazer post da ata" + err);
+				});
 
         alert('Ata criada!');
 
