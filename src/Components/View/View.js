@@ -119,7 +119,7 @@ export default function Form() {
                                     <div className="relative w-full ml-2">
                                         <label htmlFor="dateEnd" className="font-sans pl-2 text-sm text-custom-dark-gray">Data e Horário de Fim</label>
                                         <p id="dateEnd" className="info-ata-view">
-                                            {dateEnd.toLocaleString() !== '0001-01-01T00:00:00' ? dateEnd.toLocaleString() : 'Sem data definida'}
+                                            {dateEnd && dateEnd.toLocaleString() !== '0001-01-01T00:00:00' ? new Date(dateEnd).toLocaleString() : 'Sem data definida'}
                                             <AiOutlineCalendar className="text-custom-dark-gray image-size"/>
                                         </p>
                                     </div>
