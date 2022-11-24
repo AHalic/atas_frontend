@@ -69,7 +69,7 @@ export default function Form() {
 	}
 
 	function handleDescriptionChange(e) {
-		const aux = selectedDescription.map(item => item.campoId == e.target.id ? {...item, valor: e.target.value} : item);	
+		const aux = selectedDescription.map(item => Number(item.campoId) === Number(e.target.id) ? {...item, "valor": e.target.value} : item);	
 		setSelectedDescription(aux);
 	}
 
