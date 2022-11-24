@@ -20,11 +20,10 @@ export default function Home() {
 			.get("/api/Atas")
 			.then(response => {
 				const sortedAtas = response.data.sort((a, b) => {
-					return a.tipoReuniao > b.tipoReuniao && new Date(b.dataInicio) - new Date(a.dataInicio);
+					return a.tipoReuniao > b.tipoReuniao || (a.tipoReuniao === b.tipoReuniao && new Date(b.dataInicio) > new Date(a.dataInicio));
 				});
 		
 				setAtas(sortedAtas);
-
 				setUnique([...new Set(sortedAtas.map(item => item.tipoReuniao))]); // get unique groups
 
 			})
@@ -123,7 +122,9 @@ export default function Home() {
 													</div>
 
 													<div className="ata-buttons">
-														<AiOutlineEye/>
+														<Link to={`/ata/${ata.id}`}>
+															<AiOutlineEye/>
+														</Link>
 														<button className="handle-ata-button" type="button" onClick={() => deleteAta(ata.id)}>
 															<BiTrashAlt size={16}/>
 														</button>
