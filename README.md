@@ -15,6 +15,7 @@ O sistema foi desenvolvido em _Javascript_ com auxilio das ferramentas e pacotes
 
 ## Instruções
 
+O arquivo [api.js](./src/services/api.js) faz a conexão com a API (descrita na [seção API](#API)), para utilizá-la, insira seu token no local indicado no arquivo.
 Para utilizar o sistema basta rodar os comandos abaixo no terminal:
 ```
 npm install
@@ -41,11 +42,11 @@ Nesta seção estão listados os requisitos do projeto. Se determinada funcional
 
 **Formulário da Ata**
 
-- [ ] **RF4**: A ata deve poder ser visualizada
+- [x] **RF4**: A ata deve poder ser visualizada
 
-  - [ ] RN4.1: O formulário para visualizar uma ata deve ser acessado a partir de um botão na listagem.
-  - [ ] RN4.2: Os seus campos não devem ser editáveis.
-  - [ ] RN4.3: Não deve haver botão de Salvar
+  - [x] RN4.1: O formulário para visualizar uma ata deve ser acessado a partir de um botão na listagem.
+  - [x] RN4.2: Os seus campos não devem ser editáveis.
+  - [x] RN4.3: Não deve haver botão de Salvar
 
 - [x] **RF5**: Ao selecionar uma das opções do Tipo de Reunião, os campos definidos pelo tipo devem ser mostrados na ata (páginas 3, 4, 5 e 6 do mockup)
 
