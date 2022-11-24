@@ -1,0 +1,24 @@
+.info-ata-view {
+    padding: 0.625rem;
+    width: 100%;
+    display: block;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    border: 0.1rem solid #C0C1C6;
+    border-radius: 0.5rem/* 8px */;
+
+    color: #7B7B7B;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.info-date {
+    width: 50%;
+}
+
+.image-size {
+    font-size: 18px;
+}
