@@ -197,7 +197,7 @@ export default function Form() {
 										<div key={`${campo.id}`} className="relative">
 												<div className="date-test relative">
 													<input required onChange={handleDescriptionChange} name="floating_outlined_start" type="datetime-local" id={`${campo.id}`} className="flex text-sm w-full text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer"/>
-													<label htmlFor={`${campo.id}`} className="font-sans absolute text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">Data e Horário de Início *</label>
+													<label htmlFor={`${campo.id}`} className="font-sans absolute text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">{campo.nome}</label>
 												</div>
 												<AiOutlineCalendar className="absolute right-5 text-custom-dark-gray -translate-y-7"/>
 										</div>
