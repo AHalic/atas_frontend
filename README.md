@@ -13,6 +13,8 @@ O sistema foi desenvolvido em _Javascript_ com auxilio das ferramentas e pacotes
 - Tailwind
 - Axios
 
+Ps: O sistema foi testado nos navegadores Safari e Chrome (O campo de inserção de datas pode apresentar comportamentos diferentes entre os navegadores).
+
 ## Instruções
 
 O arquivo [api.js](./src/services/api.js) faz a conexão com a API (descrita na [seção API](#API)), para utilizá-la, insira seu token no local indicado no arquivo.
