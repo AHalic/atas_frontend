@@ -5,12 +5,10 @@ import api from "../../services/api";
 import '../Home/style.css';
 import '../Form/style.css';
 import './style.css';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 export default function Form() {
-	const [local, setLocal] = useState([{}]);
-	const [tiposReuniao, setTiposReuniao] = useState([{}]);
 	const [dateStart, setDateStart] = useState(new Date());
 	const [dateEnd, setDateEnd] = useState(undefined);
 	const [selectedLocal, setSelectedLocal] = useState(0);
@@ -18,34 +16,9 @@ export default function Form() {
 	const [selectedTitle, setSelectedTitle] = useState('');
 	const [selectedDescription, setSelectedDescription] = useState([]);
 
-	const navigate = useNavigate();
 
     const { id } = useParams();
 
-
-	// Get Locais from API
-	useEffect(() => {
-		api
-			.get("/api/Locais")
-			.then(response => {
-				setLocal(response.data)
-			})
-			.catch((err) => {
-				console.error("ops! ocorreu um erro" + err);
-			});
-	}, []);
-
-	// Get TiposReuniao from API
-	useEffect(() => {
-		api
-			.get("/api/TiposReuniao")
-			.then(response => {
-				setTiposReuniao(response.data);
-			})
-			.catch((err) => {
-				console.error("ops! ocorreu um erro" + err);
-			});
-	}, []);
 
     useEffect(() => {
         api
