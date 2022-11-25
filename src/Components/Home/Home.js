@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
 	const [atas, setAtas] = useState([{}]);
-	const [locais, setLocais] = useState([{}]);
 	const [tiposReuniao, setTiposReuniao] = useState([{}]);
 	const [unique, setUnique] = useState([]);
 
@@ -20,7 +19,13 @@ export default function Home() {
 			.get("/api/Atas")
 			.then(response => {
 				const sortedAtas = response.data.sort((a, b) => {
-					return a.tipoReuniao > b.tipoReuniao || (a.tipoReuniao === b.tipoReuniao && new Date(b.dataInicio) > new Date(a.dataInicio));
+					if (a.tipoReuniao > b.tipoReuniao) {
+						return 1;
+					} else if (a.tipoReuniao === b.tipoReuniao && new Date(b.dataInicio) > new Date(a.dataInicio)) {
+						return 1;
+					} else {
+						return -1;
+					}
 				});
 		
 				setAtas(sortedAtas);
@@ -34,17 +39,6 @@ export default function Home() {
 
 	}, []);
 
-	// Get Locais from API
-	useEffect(() => {
-		api
-			.get("/api/Locais")
-			.then(response => {
-				setLocais(response.data)
-			})
-			.catch((err) => {
-				console.error("ops! ocorreu um erro" + err);
-			});
-	}, []);
 
 	// Get TiposReuniao from API
 	// Sort tiposReuniao by name
