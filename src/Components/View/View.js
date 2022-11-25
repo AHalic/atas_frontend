@@ -112,7 +112,7 @@ export default function Form() {
                                         <label htmlFor="dateStart" className="font-sans pl-2 text-sm text-custom-dark-gray">Data e Horário de Início</label>
                                         <p id="dateStart" className="info-ata-view">
                                             {dateStart.toLocaleString()}
-                                            <AiOutlineCalendar className="text-custom-dark-gray image-size"/>
+                                            {/* <AiOutlineCalendar className="text-custom-dark-gray image-size"/> */}
                                         </p>
                                     </div>
 
@@ -120,7 +120,7 @@ export default function Form() {
                                         <label htmlFor="dateEnd" className="font-sans pl-2 text-sm text-custom-dark-gray">Data e Horário de Fim</label>
                                         <p id="dateEnd" className="info-ata-view">
                                             {dateEnd && dateEnd.toLocaleString() !== '0001-01-01T00:00:00' ? new Date(dateEnd).toLocaleString() : 'Sem data definida'}
-                                            <AiOutlineCalendar className="text-custom-dark-gray image-size"/>
+                                            {/* <AiOutlineCalendar className="text-custom-dark-gray image-size"/> */}
                                         </p>
                                     </div>
 							</div>

@@ -155,14 +155,14 @@ export default function Form() {
 										<input required onChange={handleDateStartChange} name="floating_outlined_start" type="datetime-local" id="floating_outlined_start" className="flex text-sm w-4/5 text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" value={dateStart}/>
 										<label htmlFor="floating_outlined_start" className="font-sans absolute text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">Data e Horário de Início *</label>
 									</div>
-									<AiOutlineCalendar className="absolute left-2/3 text-custom-dark-gray translate-y-3"/>
+									{/* <AiOutlineCalendar className="absolute left-2/3 text-custom-dark-gray translate-y-3"/> */}
 								</div>
 								
 								<div className="date-test calendar relative">
 									<div className="date-test relative">
 										<input onChange={handleDateEndChange} name="floating_outlined_end" type="datetime-local" id="floating_outlined_end" className="color-before absolute right-1 text-sm w-4/5 text-custom-dark-gray bg-transparent rounded-lg border-1 border-custom-light-gray appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-light-blue focus:outline-none focus:ring-0 focus:border-custom-light-blue peer" value={dateEnd}/>
 										<label htmlFor="floating_outlined_end" className="left-size font-sans absolute right-1 text-sm text-custom-dark-gray dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-custom-light-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-custom-light-blue peer-focus:dark:text-custom-light-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">Data e Horário de Fim</label>
-										<AiOutlineCalendar className="absolute right-6 text-custom-dark-gray translate-y-3"/>
+										{/* <AiOutlineCalendar className="absolute right-6 text-custom-dark-gray translate-y-3"/> */}
 									</div>
 								</div>
 							</div>
