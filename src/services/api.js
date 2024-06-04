@@ -4,7 +4,8 @@ const api = axios.create({
   baseURL: "https://desafio-iall.azurewebsites.net",
 });
 
-const token = "your token";
+const token = process.env.REACT_APP_API_KEY;
+console.log(token);
 api.defaults.headers.common = {'Authorization': `Bearer ${token}`}
 
 
